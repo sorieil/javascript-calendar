@@ -1,0 +1,311 @@
+@import '~normalize.css';
+
+div {
+  //flex: 1;
+}
+
+@mixin before-border-box($px, $borderStyle, $color) {
+  &::before {
+    position: absolute;
+    display: block;
+    content: '';
+    width: 100%;
+    height: 100%;
+    border: $px $borderStyle $color;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    @content;
+  }
+}
+
+@mixin position-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin position-right {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
+@mixin position-left {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
+#app {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .calender__box {
+    margin: 20px 0 0 0;
+    width: 700px;
+    height: 800px;
+    display: flex;
+    position: relative;
+    flex-flow: column nowrap;
+    //@include before-border-box(1px, solid, blue);
+
+    .__headers {
+      position: relative;
+      display: flex;
+      width: 100%;
+      height: 50px;
+      //@include before-border-box(1px, dotted, green);
+
+      .__navigator-left {
+        @include position-left;
+        display: flex;
+        flex-flow: row wrap;
+        .__selected-date {
+          width: 100px;
+          height: 24px;
+          margin: 0 10px 0 0;
+          line-height: 26px;
+        }
+
+        .__date-controller {
+          display: flex;
+          flex-flow: row wrap;
+          .__icon {
+            position: relative;
+            cursor: pointer;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            @include before-border-box(1px, solid, lightgray) {
+              content: inherit;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
+          }
+          .__today {
+            //margin: 0 0 0 -1px;
+            cursor: pointer;
+            position: relative;
+            text-align: center;
+            line-height: 26px;
+            width: 40px;
+            height: 24px;
+            @include before-border-box(1px, solid, lightgray) {
+              border-left: none;
+            }
+          }
+        }
+      }
+
+      .__navigator-center {
+        @include position-center;
+        height: 24px;
+        .__day-type {
+          margin: 0;
+          padding: 0;
+          height: 24px;
+          li {
+            cursor: pointer;
+            margin: 0 -3px 0 0;
+            width: 40px;
+            height: inherit;
+            line-height: 26px;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            list-style: none;
+            @include before-border-box(1px, solid, lightgray);
+
+            &:hover {
+              background-color: #ffca36;
+            }
+
+            &.__active {
+              background-color: #ffca36;
+            }
+          }
+        }
+      }
+
+      .__navigator-right {
+        width: 80px;
+        height: 24px;
+        text-align: center;
+        line-height: 24px;
+        @include position-right;
+        .__add-schedule {
+          cursor: pointer;
+          @include before-border-box(1px, solid, lightgray);
+        }
+      }
+    }
+    .__contents {
+      position: relative;
+      margin: 10px 0 0 0;
+      //@include before-border-box(1px, solid, red);
+      .__month {
+        visibility: hidden;
+        opacity: 0;
+        .__weeks {
+          display: flex;
+          justify-content: space-between;
+          width: 100%;
+          .__week {
+            flex: 1;
+            position: relative;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            background-color: lightgray;
+            .__text {
+              margin: 0 0 0 10px;
+            }
+            @include before-border-box(1px, solid, #898989) {
+              border-right: none;
+            }
+
+            &:first-child {
+              color: red;
+            }
+
+            &:last-child {
+              color: #21b7ff;
+              &::before {
+                border-right: 1px solid #898989;
+              }
+            }
+          }
+        }
+        .__days {
+          margin: 4px 0 0 0;
+          position: relative;
+          display: grid;
+          grid-template-columns: repeat(7, auto);
+          @include before-border-box(1px, solid, lightgray);
+
+          .__day {
+            cursor: pointer;
+            height: 100px;
+            position: relative;
+            content: '';
+            span {
+              position: absolute;
+              top: 10px;
+              left: 10px;
+              display: block;
+            }
+
+            &.__today {
+              background-color: #efefef;
+            }
+
+            &.__sunday {
+              color: red;
+            }
+            &.__saturday {
+              color: #21b7ff;
+            }
+
+            @include before-border-box(1px, solid, lightgray) {
+              border-right: none;
+              border-bottom: none;
+            }
+
+            &:hover {
+              background-color: #898989;
+            }
+          }
+        }
+      }
+      .__weeks {
+      }
+
+      .__active {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+  }
+  .modal__box {
+    opacity: 0;
+    visibility: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: block;
+    content: '';
+    transition: all 0.2s linear;
+    &.__active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .__bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: block;
+      content: '';
+      background-color: #000;
+      opacity: 0.1;
+    }
+
+    .__container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 400px;
+      height: 500px;
+      background-color: #fff;
+      display: flex;
+      flex-flow: column nowrap;
+      border: none;
+      overflow: hidden;
+      border-radius: 20px;
+      box-shadow: 0px 24px 45px -25px rgba(0, 0, 0, 0.75);
+      z-index: 100;
+      .__header {
+        background-color: #ffca36;
+        display: flex;
+        height: 40px;
+        justify-content: space-between;
+        align-items: center;
+        .__text {
+          cursor: pointer;
+          margin: 0 0 0 15px;
+        }
+
+        .__icon {
+          cursor: pointer;
+          margin: 0 10px 0 0;
+        }
+      }
+
+      .__body {
+        .__forms {
+          label {
+            border: 1px solid red;
+            .__text {
+              width: 100px;
+            }
+          }
+          display: flex;
+          flex-flow: column nowrap;
+        }
+      }
+    }
+  }
+}

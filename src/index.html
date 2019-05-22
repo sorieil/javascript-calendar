@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Interview exam.</title>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+      integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div id="app">
+      <div class="calender__box">
+        <div class="__headers">
+          <div class="__navigator-left">
+            <div class="__selected-date"></div>
+            <div class="__date-controller">
+              <i class="fas fa-chevron-left __icon __previous"></i>
+              <i class="fas fa-chevron-right __icon __next"></i>
+              <div class="__today">오늘</div>
+            </div>
+          </div>
+          <div class="__navigator-center">
+            <ul class="__day-type">
+              <li class="__type">일간</li>
+              <li class="__type">주간</li>
+              <li class="__type">월간</li>
+            </ul>
+          </div>
+          <div class="__navigator-right">
+            <div class="__add-schedule">
+              일정추가
+            </div>
+          </div>
+        </div>
+        <div class="__contents">
+          <div class="__month" data-type="month">
+            <div class="__weeks">
+              <div class="__week"><span class="__text">일</span></div>
+              <div class="__week"><span class="__text">월</span></div>
+              <div class="__week"><span class="__text">화</span></div>
+              <div class="__week"><span class="__text">수</span></div>
+              <div class="__week"><span class="__text">목</span></div>
+              <div class="__week"><span class="__text">금</span></div>
+              <div class="__week"><span class="__text">토</span></div>
+            </div>
+            <div class="__days"></div>
+          </div>
+        </div>
+      </div>
+      <div class="modal__box">
+        <div class="__bg"></div>
+        <div class="__container">
+          <div class="__header">
+            <span class="__text">일정추가</span>
+            <i class="fas fa-times __icon __close-modal"></i>
+          </div>
+          <div class="__body">
+            <form class="__forms">
+              <label>
+                <span class="__text">제목</span>
+                <input type="text" name="title" required />
+              </label>
+              <label>
+                <span class="__text">시작일시</span>
+                <input type="date" name="start-date" required />
+                <input type="time" name="start-time" required />
+              </label>
+              <label>
+                <span class="__text">종료일시</span>
+                <input type="date" name="end-date" required />
+                <input type="time" name="end-time" required />
+              </label>
+              <label>
+                <span class="__text">메모</span>
+                <textarea name="memo" required></textarea>
+              </label>
+              <button>저장</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

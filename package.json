@@ -1,7 +1,7 @@
 {
   "name": "calender-only-javascript-api",
   "version": "1.0.0",
-  "description": "interview exam.",
+  "description": "Pure javascript webpack",
   "author": "JAEHYUK KIM",
   "license": "MIT",
   "private": true,

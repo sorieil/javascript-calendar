@@ -110,6 +110,7 @@ div {
         @include position-center;
         height: 24px;
         .__day-type {
+          display: none;
           margin: 0;
           padding: 0;
           height: 24px;
@@ -143,6 +144,7 @@ div {
         line-height: 24px;
         @include position-right;
         .__add-schedule {
+          display: none;
           cursor: pointer;
           @include before-border-box(1px, solid, lightgray);
         }
@@ -153,8 +155,8 @@ div {
       margin: 10px 0 0 0;
       //@include before-border-box(1px, solid, red);
       .__month {
-        visibility: hidden;
-        opacity: 0;
+        //visibility: hidden;
+        //opacity: 0;
         .__weeks {
           display: flex;
           justify-content: space-between;
@@ -275,7 +277,7 @@ div {
       border: none;
       overflow: hidden;
       border-radius: 20px;
-      box-shadow: 0px 24px 45px -25px rgba(0, 0, 0, 0.75);
+      box-shadow: 0 24px 45px -25px rgba(0, 0, 0, 0.75);
       z-index: 100;
       .__header {
         background-color: #ffca36;

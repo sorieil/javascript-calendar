@@ -8,7 +8,7 @@
   "scripts": {
     "start": "nodemon dev-server.js",
     "dev": "webpack-dev-server --inline --hot --config webpack.config.dev.js",
-    "build": "webpack --config webpack.config.dev.js",
+    "build": "webpack --config webpack.config.js",
     "watch": "webpack --watch --config webpack.config.dev.js",
     "bundle": "yarn && yarn run watch",
     "production": "cross-env NODE_ENV=production webpack",
